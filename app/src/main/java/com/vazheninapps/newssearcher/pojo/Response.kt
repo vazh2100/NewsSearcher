@@ -10,8 +10,4 @@ data class Response(
     private val totalResults: Int? = null,
     @SerializedName("articles")
     private val articles: List<Article>? = null
-
-) {
-
-
-}
+)
