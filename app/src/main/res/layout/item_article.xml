@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:clipToPadding="false"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="20dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/playfair_display"
+            android:shadowColor="@color/text_secondary"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            android:textColor="@color/text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kevin Dotson and Hollie Silverman, CNN" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:shadowColor="@color/text_secondary_light"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:textColor="@color/text_secondary"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@+id/textViewAuthor"
+            app:layout_constraintTop_toTopOf="@+id/textViewAuthor"
+            tools:text="22.10.2020 " />
+
+        <TextView
+            android:id="@+id/textViewAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/source_sans_pro"
+            android:shadowColor="@color/text_secondary_light"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            android:textColor="@color/text_secondary"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+            tools:text="Элизабет Эзенхауэр" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewArticle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="true"
+            android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDate"
+            tools:ignore="UnusedAttribute"
+            tools:srcCompat="@drawable/place_holder" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:shadowColor="@color/text_secondary_light"
+            android:shadowDx="1"
+            android:shadowDy="2"
+            android:shadowRadius="5"
+            tools:text='"With fall comes football. Despite the COVID-19 pandemic and the postponement of most college sports seasons, the NFL appears committed to proceeding undeterred, meaning the all-digital version of America’s most-watched sport is already ahead of the curve. Yep…"'
+            android:textColor="@color/text_secondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewArticle"
+            tools:ignore="UnusedAttribute" />
+
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="8dp"
+            android:shadowColor="@color/text_secondary"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="3"
+            android:text="@string/label_read_more"
+            android:textAllCaps="false"
+            android:textColor="@color/text_primary"
+            app:elevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

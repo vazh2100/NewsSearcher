@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewsSearcher</string>
+    <string name="label_read_more">Читать полностью</string>
 </resources>
