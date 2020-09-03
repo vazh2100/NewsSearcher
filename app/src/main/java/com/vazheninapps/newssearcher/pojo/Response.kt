@@ -9,5 +9,5 @@ data class Response(
     @SerializedName("totalResults")
     private val totalResults: Int? = null,
     @SerializedName("articles")
-    private val articles: List<Article>? = null
+    val articles: List<Article>? = null
 )
