@@ -65,7 +65,7 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
         val article = articleList[position]
         with(holder) {
             textViewTitle.text = article.title
-            textViewDate.text = article.date
+            textViewDate.text = article.getDate()
             textViewAuthor.text = article.author
             Picasso.get().load(article.urlToImage).placeholder(R.drawable.placeholder).into(imageViewArticle)
             textViewDescription.text = article.description

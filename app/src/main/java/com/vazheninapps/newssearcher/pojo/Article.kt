@@ -16,7 +16,11 @@ data class Article(
     @SerializedName("urlToImage")
     var urlToImage: String? = null,
     @SerializedName("publishedAt")
-    var date: String?
+    private var date: String?
+){
 
 
-)
+   fun getDate():String?{
+       return date?.substringBefore("T")
+   }
+}
