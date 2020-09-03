@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
     android:clipToPadding="false"
@@ -80,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewDate"
             tools:ignore="UnusedAttribute"
-            tools:srcCompat="@drawable/place_holder" />
+            tools:srcCompat="@drawable/placeholder" />
 
         <TextView
             android:id="@+id/textViewDescription"
@@ -93,12 +94,12 @@
             android:shadowDx="1"
             android:shadowDy="2"
             android:shadowRadius="5"
-            tools:text='"With fall comes football. Despite the COVID-19 pandemic and the postponement of most college sports seasons, the NFL appears committed to proceeding undeterred, meaning the all-digital version of America’s most-watched sport is already ahead of the curve. Yep…"'
             android:textColor="@color/text_secondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewArticle"
-            tools:ignore="UnusedAttribute" />
+            tools:ignore="UnusedAttribute"
+            tools:text='"With fall comes football. Despite the COVID-19 pandemic and the postponement of most college sports seasons, the NFL appears committed to proceeding undeterred, meaning the all-digital version of America’s most-watched sport is already ahead of the curve. Yep…"' />
 
 
         <Button
