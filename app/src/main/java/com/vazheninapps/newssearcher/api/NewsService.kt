@@ -13,7 +13,7 @@ interface NewsService {
     @Headers(HEADER_AUTHORIZATION)
     @GET("everything")
     fun getNews(
-        @Query(QUERY_Q) q: String,
+        @Query(QUERY_Q) q: String?,
         @Query(QUERY_LANGUAGE) language: String,
         @Query(QUERY_PAGE_SIZE) pageSize: Int = 10,
         @Query(QUERY_PAGE) page: Int = 1
