@@ -10,6 +10,7 @@
     tools:context=".screens.NewsActivity">
 
     <include
+        android:id="@+id/include"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         layout="@layout/toolbar_search" />
@@ -20,6 +21,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.Holo.Light.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/splash_animation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/newspaper_animation" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
