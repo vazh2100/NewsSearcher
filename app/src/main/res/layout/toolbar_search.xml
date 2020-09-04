@@ -29,7 +29,8 @@
                 android:focusable="auto"
                 android:inputType="textPersonName"
                 android:text="@string/initial_text"
-                 />
+                android:hint="@string/hint_enter_query"
+                tools:ignore="Autofill" />
 
             <ImageButton
                 android:id="@+id/buttonSearch"
