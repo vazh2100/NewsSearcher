@@ -1,4 +1,4 @@
-package com.vazheninapps.newssearcher.screens
+package com.vazheninapps.newssearcher.screens.news.mvp
 
 import android.animation.Animator
 import android.content.Intent
@@ -16,14 +16,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.adapters.ArticleAdapter
+import com.vazheninapps.newssearcher.app.App
 import com.vazheninapps.newssearcher.pojo.Article
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar_search.*
 
 class NewsActivity : AppCompatActivity(), NewsContract.View {
 
-    private val adapter by lazy { ArticleAdapter.getInstance() }
-    private val presenter by lazy { NewsPresenter.getInstance(NewsModel(this)) }
+    private val adapter by lazy { App.getComponent().getAdapter() }
+    private val presenter by lazy { App.getComponent().getPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,17 +1,17 @@
-package com.vazheninapps.newssearcher.screens
+package com.vazheninapps.newssearcher.screens.news.mvp
 
 import android.content.Context
 import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.api.ApiFactory
+import com.vazheninapps.newssearcher.app.App
 import com.vazheninapps.newssearcher.base.mvp.BaseModel
 import com.vazheninapps.newssearcher.utils.NetUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class NewsModel(context: Context): BaseModel(context), NewsContract.Model {
 
-    private val compositeDisposable by lazy { CompositeDisposable() }
+    private val compositeDisposable by lazy { App.getComponent().getCompositeDisposable() }
 
     override fun loadArticles(q: String?, language: String, page: Int, loadCallback: NewsContract.Model.LoadCallback) {
 
