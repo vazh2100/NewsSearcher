@@ -4,7 +4,6 @@ abstract class BasePresenter<V : MVPView, M:MVPModel>(private var model: M?) : M
 
     private  var view: V? = null
 
-
     override fun attachView(mvpView: V) {
         view = mvpView
     }
