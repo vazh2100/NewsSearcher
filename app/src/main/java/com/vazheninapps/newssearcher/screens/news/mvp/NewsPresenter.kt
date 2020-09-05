@@ -1,11 +1,11 @@
-package com.vazheninapps.newssearcher.screens
+package com.vazheninapps.newssearcher.screens.news.mvp
 
 import android.net.Uri
 import com.vazheninapps.newssearcher.base.mvp.BasePresenter
 import com.vazheninapps.newssearcher.pojo.Article
 import java.util.*
 
-class NewsPresenter(model: NewsContract.Model ): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
+class NewsPresenter(model: NewsContract.Model): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
 
     private var isFirstLaunch = true
     private var isLoading = false
@@ -49,9 +49,7 @@ class NewsPresenter(model: NewsContract.Model ): BasePresenter<NewsContract.View
                     isLoading = false
                     getView()?.hideProgressBar()
                 }
-
             })
-
     }
 
     override fun readyToShowAnimation() {
@@ -63,16 +61,5 @@ class NewsPresenter(model: NewsContract.Model ): BasePresenter<NewsContract.View
     override fun destroy() {
         getModel()?.clearDisposable()
         super.destroy()
-
-    }
-
-    companion object{
-        private  var  presenter:NewsPresenter? = null
-        fun getInstance(model:NewsContract.Model):NewsPresenter{
-            presenter?.let{return it }
-            val instance = NewsPresenter(model)
-            presenter =instance
-            return instance
-        }
     }
 }

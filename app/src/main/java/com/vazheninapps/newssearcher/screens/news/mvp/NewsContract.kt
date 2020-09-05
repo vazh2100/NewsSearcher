@@ -1,4 +1,4 @@
-package com.vazheninapps.newssearcher.screens
+package com.vazheninapps.newssearcher.screens.news.mvp
 
 import android.net.Uri
 import com.vazheninapps.newssearcher.base.mvp.MVPModel

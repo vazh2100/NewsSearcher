@@ -13,5 +13,5 @@ object ApiFactory {
         .baseUrl(BASE_URL)
         .build()
 
-    val newsService = retrofit.create(NewsService::class.java)
+    val newsService: NewsService = retrofit.create(NewsService::class.java)
 }
