@@ -5,4 +5,5 @@
 Библиотеки:Dagger2, RxAndroid, Retrofit2, GSON, Picasso, Material Design, Lottie
 
 ![Иллюстрация к проекту](https://github.com/vazh2100/NewsSearcher/raw/master/portrait.png)
+
 ![Иллюстрация к проекту](https://github.com/vazh2100/NewsSearcher/raw/master/landscape.png)
