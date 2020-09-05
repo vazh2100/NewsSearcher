@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">NewsSearcher</string>
-    <string name="label_read_more">Read</string>
-    <string name="error_response_not_invalid_but_empty">Response from server doesn\'t contain results</string>
-    <string name="error_no_internet_connection">No internet connection</string>
-</resources>
