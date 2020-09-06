@@ -4,12 +4,8 @@ import android.net.Uri
 import com.vazheninapps.newssearcher.base.mvp.BasePresenter
 import com.vazheninapps.newssearcher.pojo.Article
 import java.util.*
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class NewsPresenter @Inject  constructor (model: NewsContract.Model): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
-
+class NewsPresenter (model: NewsContract.Model): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
     private var isFirstLaunch = true
     private var isLoading = false
     private var query:String? = "sports"
@@ -64,5 +60,22 @@ class NewsPresenter @Inject  constructor (model: NewsContract.Model): BasePresen
     override fun destroy() {
         getModel()?.clearDisposable()
         super.destroy()
+        clearInstance()
+    }
+
+    companion object{
+        private var presenter: NewsPresenter?  = null
+
+
+        fun getInstance(model:NewsContract.Model): NewsPresenter {
+            presenter?.let{return it }
+            val instance = NewsPresenter(model)
+            presenter = instance
+            return instance
+        }
+
+        fun clearInstance(){
+            presenter = null
+        }
     }
 }
