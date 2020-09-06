@@ -7,11 +7,13 @@ import com.vazheninapps.newssearcher.app.App
 import com.vazheninapps.newssearcher.base.mvp.BaseModel
 import com.vazheninapps.newssearcher.utils.NetUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class NewsModel(context: Context): BaseModel(context), NewsContract.Model {
+class NewsModel @Inject constructor(context: Context): BaseModel(context), NewsContract.Model {
 
-    private val compositeDisposable by lazy { App.getComponent().getCompositeDisposable() }
+    private val compositeDisposable by lazy { CompositeDisposable()}
 
     override fun loadArticles(q: String?, language: String, page: Int, loadCallback: NewsContract.Model.LoadCallback) {
 

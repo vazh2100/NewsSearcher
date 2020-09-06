@@ -11,9 +11,11 @@ import com.squareup.picasso.Picasso
 import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.pojo.Article
 import kotlinx.android.synthetic.main.item_article.view.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+@Singleton
+class ArticleAdapter @Inject constructor() : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
     var onButtonClickListener: OnButtonClickListener? = null
     var onReachEndListener: OnReachEndListener? = null

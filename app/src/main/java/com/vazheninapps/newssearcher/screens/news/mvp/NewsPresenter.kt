@@ -4,8 +4,11 @@ import android.net.Uri
 import com.vazheninapps.newssearcher.base.mvp.BasePresenter
 import com.vazheninapps.newssearcher.pojo.Article
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NewsPresenter(model: NewsContract.Model): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
+@Singleton
+class NewsPresenter @Inject  constructor (model: NewsContract.Model): BasePresenter<NewsContract.View, NewsContract.Model>(model), NewsContract.Presenter {
 
     private var isFirstLaunch = true
     private var isLoading = false

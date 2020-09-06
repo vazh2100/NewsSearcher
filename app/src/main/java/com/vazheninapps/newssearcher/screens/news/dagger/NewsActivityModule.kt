@@ -18,22 +18,21 @@ class NewsActivityModule(val context: Context) {
         return context.applicationContext
     }
     @Provides
-    fun provideModel(context: Context):NewsContract.Model{
-        return NewsModel(context)
-    }
+   fun provideModel(context: Context):NewsContract.Model{
+      return NewsModel(context)
+  }
 
-    @Provides @Singleton
-    fun provideAdapter():ArticleAdapter{
-        return ArticleAdapter()
-    }
 
-    @Provides @Singleton
-    fun provideNewsPresenter(model:NewsContract.Model):NewsPresenter {
-        return NewsPresenter(model)
-    }
 
-    @Provides
-    fun provideCompositeDisposable ():CompositeDisposable {
-        return CompositeDisposable()
-    }
+//    @Provides @Singleton
+//    fun provideAdapter():ArticleAdapter{
+//        return ArticleAdapter()
+//    }
+//
+//    @Provides @Singleton
+//    fun provideNewsPresenter(model:NewsContract.Model):NewsPresenter {
+//        return NewsPresenter(model)
+//    }
+
+
 }

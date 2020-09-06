@@ -12,6 +12,6 @@ interface NewsActivityComponent{
 
     fun getAdapter():ArticleAdapter
     fun getPresenter():NewsPresenter
-    fun getCompositeDisposable():CompositeDisposable
+
 
 }
