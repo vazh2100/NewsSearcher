@@ -2,37 +2,32 @@ package com.vazheninapps.newssearcher.screens.news.dagger
 
 import android.content.Context
 import com.vazheninapps.newssearcher.adapters.ArticleAdapter
+import com.vazheninapps.newssearcher.api.NewsService
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsContract
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsModel
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsPresenter
 import dagger.Module
 import dagger.Provides
-import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Singleton
+
 
 @Module
-class NewsActivityModule(val context: Context) {
+class NewsActivityModule {
 
+    @ActivityScope
     @Provides
-    fun provideContext():Context{
-        return context.applicationContext
-    }
-    @Provides
-   fun provideModel(context: Context):NewsContract.Model{
-      return NewsModel(context)
+   fun provideNewsModel(context: Context, newsService:NewsService):NewsContract.Model{
+      return NewsModel(context, newsService)
   }
 
+    @ActivityScope
+    @Provides
+    fun provideNewsPresenter(model:NewsContract.Model):NewsPresenter {
+       return NewsPresenter.getInstance(model)
+    }
 
-
-//    @Provides @Singleton
-//    fun provideAdapter():ArticleAdapter{
-//        return ArticleAdapter()
-//    }
-//
-//    @Provides @Singleton
-//    fun provideNewsPresenter(model:NewsContract.Model):NewsPresenter {
-//        return NewsPresenter(model)
-//    }
-
-
+    @ActivityScope
+    @Provides
+    fun provideArticleAdapter():ArticleAdapter{
+        return ArticleAdapter.getInstance()
+    }
 }

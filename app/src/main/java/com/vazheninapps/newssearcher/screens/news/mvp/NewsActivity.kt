@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.adapters.ArticleAdapter
-import com.vazheninapps.newssearcher.app.App
+import com.vazheninapps.newssearcher.dagger.App
 import com.vazheninapps.newssearcher.pojo.Article
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar_search.*
@@ -24,11 +24,11 @@ import javax.inject.Inject
 
 class NewsActivity : AppCompatActivity(), NewsContract.View {
 
-
-    private val adapter: ArticleAdapter by lazy { App.getComponent().getAdapter() }
-    private val presenter: NewsPresenter by lazy {App.getComponent().getPresenter()}
+    @Inject lateinit var adapter: ArticleAdapter
+    @Inject lateinit var presenter: NewsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        App.getComponent().newsActivityComponent().create().inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
         recyclerViewNews.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -45,7 +45,6 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
             }
         }
 
-        //не увидел смысла контролировать презентером доступность кнопки поиска
         editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -72,6 +71,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         presenter.detachView()
         if (isFinishing) {
             presenter.destroy()
+            ArticleAdapter.clearInstance()
         }
     }
 
@@ -108,7 +108,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         val views = arrayListOf<View>(recyclerViewNews, include)
 
         val fadeInAnim = AnimationUtils.loadAnimation(this, R.anim.fade_in)
-        fadeInAnim.duration = 8000
+        fadeInAnim.duration = 7000
 
         splash_animation.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator?) {}
