@@ -25,7 +25,7 @@ import javax.inject.Inject
 class NewsActivity : AppCompatActivity(), NewsContract.View {
 
     @Inject lateinit var adapter: ArticleAdapter
-    @Inject lateinit var presenter: NewsPresenter
+    @Inject lateinit var presenter: NewsContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.getComponent().newsActivityComponent().create().inject(this)

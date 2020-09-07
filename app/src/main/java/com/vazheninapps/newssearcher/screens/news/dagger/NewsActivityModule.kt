@@ -21,7 +21,7 @@ class NewsActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideNewsPresenter(model:NewsContract.Model):NewsPresenter {
+    fun provideNewsPresenter(model:NewsContract.Model):NewsContract.Presenter {
        return NewsPresenter.getInstance(model)
     }
 
