@@ -1,4 +1,4 @@
-package com.vazheninapps.newssearcher.screens.news.dagger
+package com.vazheninapps.newssearcher.dagger
 
 import javax.inject.Scope
 

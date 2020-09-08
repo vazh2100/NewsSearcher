@@ -18,19 +18,42 @@ import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.adapters.ArticleAdapter
 import com.vazheninapps.newssearcher.dagger.App
 import com.vazheninapps.newssearcher.pojo.Article
+import com.vazheninapps.newssearcher.screens.news.dagger.NewsActivityComponent
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.toolbar_search.*
+import java.security.Key
 import javax.inject.Inject
 
 class NewsActivity : AppCompatActivity(), NewsContract.View {
 
-    @Inject lateinit var adapter: ArticleAdapter
-    @Inject lateinit var presenter: NewsContract.Presenter
+    @Inject
+    lateinit var adapter: ArticleAdapter
+    @Inject
+    lateinit var presenter: NewsContract.Presenter
+
+    private var newsActivityComponent: NewsActivityComponent? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        App.getComponent().newsActivityComponent().create().inject(this)
+
+        newsActivityComponent =
+            if (savedInstanceState != null && savedInstanceState.containsKey(Keys.KEY_COMPONENT)) {
+                savedInstanceState.getSerializable(Keys.KEY_COMPONENT) as NewsActivityComponent
+            } else {
+                (application as App).appComponent.newsActivityComponent().create()
+            }
+        newsActivityComponent?.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
+
+        setUpRecyclerView()
+        setUpListeners()
+        presenter.attachView(this)
+        presenter.readyToShowAnimation()
+    }
+
+    private fun setUpRecyclerView() {
         recyclerViewNews.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         adapter.onButtonClickListener = object : ArticleAdapter.OnButtonClickListener {
             override fun onButtonClick(article: Article) {
@@ -38,13 +61,16 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
             }
         }
 
-
         adapter.onReachEndListener = object : ArticleAdapter.OnReachEndListener {
             override fun onReachEnd() {
                 presenter.endReached(adapter.getArticleList().size / 10 + 1)
             }
         }
 
+        recyclerViewNews.adapter = adapter
+    }
+
+    private fun setUpListeners() {
         editTextSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -59,21 +85,23 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         buttonSearch.setOnClickListener {
             presenter.buttonSearchClicked()
         }
-
-        recyclerViewNews.adapter = adapter
-        presenter.attachView(this)
-        presenter.readyToShowAnimation()
-
     }
+
 
     override fun onDestroy() {
         super.onDestroy()
         presenter.detachView()
         if (isFinishing) {
             presenter.destroy()
-            ArticleAdapter.clearInstance()
+            newsActivityComponent = null
         }
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable(Keys.KEY_COMPONENT, newsActivityComponent)
+    }
+
 
     override fun getQueryString(): String {
         return editTextSearch.text.toString().trim()
@@ -83,6 +111,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         adapter.clearArticles()
     }
 
+
     override fun showArticles(articles: List<Article>) {
         adapter.addArticles(articles)
     }
@@ -91,6 +120,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         Snackbar.make(recyclerViewNews, errorMessage.toString(), Snackbar.LENGTH_LONG)
             .setDuration(4000).show()
     }
+
 
     override fun goToBrowser(uri: Uri) {
         startActivity(Intent(Intent.ACTION_VIEW, uri).addCategory(Intent.CATEGORY_BROWSABLE))
@@ -120,6 +150,7 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
                 }
                 presenter.viewIsReady()
             }
+
             override fun onAnimationCancel(animation: Animator?) {}
             override fun onAnimationRepeat(animation: Animator?) {}
         })
@@ -128,4 +159,5 @@ class NewsActivity : AppCompatActivity(), NewsContract.View {
         splash_animation.visibility = VISIBLE
         splash_animation.playAnimation()
     }
+
 }

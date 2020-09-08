@@ -8,8 +8,9 @@ import com.vazheninapps.newssearcher.utils.NetUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class NewsModel constructor(context: Context, private val newsService: NewsService): BaseModel(context), NewsContract.Model {
+class NewsModel @Inject constructor(context: Context, private val newsService: NewsService): BaseModel(context), NewsContract.Model {
 
     private val compositeDisposable by lazy { CompositeDisposable()}
 

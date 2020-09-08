@@ -1,33 +1,22 @@
 package com.vazheninapps.newssearcher.screens.news.dagger
 
-import android.content.Context
-import com.vazheninapps.newssearcher.adapters.ArticleAdapter
-import com.vazheninapps.newssearcher.api.NewsService
+import com.vazheninapps.newssearcher.dagger.ActivityScope
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsContract
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsModel
 import com.vazheninapps.newssearcher.screens.news.mvp.NewsPresenter
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 
 
 @Module
-class NewsActivityModule {
+abstract class NewsActivityModule {
 
     @ActivityScope
-    @Provides
-   fun provideNewsModel(context: Context, newsService:NewsService):NewsContract.Model{
-      return NewsModel(context, newsService)
-  }
+    @Binds
+    abstract fun provideNewsContractModel(newsModel:NewsModel):NewsContract.Model
 
     @ActivityScope
-    @Provides
-    fun provideNewsPresenter(model:NewsContract.Model):NewsContract.Presenter {
-       return NewsPresenter.getInstance(model)
-    }
+    @Binds
+    abstract fun provideNewsContractPresenter(newsPresenter: NewsPresenter):NewsContract.Presenter
 
-    @ActivityScope
-    @Provides
-    fun provideArticleAdapter():ArticleAdapter{
-        return ArticleAdapter.getInstance()
-    }
 }

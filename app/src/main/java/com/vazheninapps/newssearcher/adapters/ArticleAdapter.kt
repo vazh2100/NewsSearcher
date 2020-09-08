@@ -10,9 +10,12 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.squareup.picasso.Picasso
 import com.vazheninapps.newssearcher.R
 import com.vazheninapps.newssearcher.pojo.Article
+import com.vazheninapps.newssearcher.dagger.ActivityScope
 import kotlinx.android.synthetic.main.item_article.view.*
+import javax.inject.Inject
 
-class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
+@ActivityScope
+class ArticleAdapter @Inject constructor() : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() {
 
     var onButtonClickListener: OnButtonClickListener? = null
     var onReachEndListener: OnReachEndListener? = null
@@ -50,8 +53,6 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
-
-
         if (articleList.size >= 10 && onReachEndListener != null && position > articleList.size - 2) {
             onReachEndListener!!.onReachEnd()
         }
@@ -74,20 +75,6 @@ class ArticleAdapter : RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder>() 
         val textViewDescription: TextView = itemView.textViewDescription
         val button: Button = itemView.buttonShowInBrowser
 
-    }
-
-    companion object{
-        private var adapter: ArticleAdapter? =null
-        fun getInstance(): ArticleAdapter {
-            adapter?.let{return it }
-            val instance = ArticleAdapter()
-            adapter =instance
-            return instance
-        }
-
-        fun clearInstance(){
-            adapter = null
-        }
     }
 }
 
